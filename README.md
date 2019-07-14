@@ -3,25 +3,33 @@ HELK and friends
   
 ## Step  
 1. Install HELK (https://github.com/Cyb3rWard0g/HELK)(Defaul user: helk and password: hunting)  
+```
 git clone https://github.com/Cyb3rWard0g/HELK.git  
 cd HELK/docker
 sudo ./helk_install.sh  
-  
+```  
+
 2. Download Sysmon from Microsoft  
 - https://docs.microsoft.com/en-us/sysinternals/downloads/sysmon  
   
 3. Install Sysmon service(With Administrator privilege)  
+```
 sysmon.exe -i -accepteula -h md5,sha256,imphash -l -n  
+```
 
 4. Download Sysmon configuration from SwiftOnSecurity  
 - https://github.com/SwiftOnSecurity/sysmon-config  
 - https://raw.githubusercontent.com/SwiftOnSecurity/sysmon-config/master/sysmonconfig-export.xml  
 
 5. Check current rules of sysmon  
+```
 sysmon.exe -c  
+```
 
 6. Update sysmon configuration
+```
 Sysmon.exe -c sysmonconfig-export.xml  
+```
   
 7. Download winlogbeat for sending log  
 https://www.elastic.co/downloads/beats/winlogbeat  
@@ -29,10 +37,14 @@ https://www.elastic.co/downloads/beats/winlogbeat
 8. Extract winlogbeat zip file and move to C:\Program Files\  
   
 9. Move to winlogbeat folder  
+```
 cd 'C:\Program Files\winlogbeat-7.2.0-windows-x86_64\winlogbeat-7.2.0-windows-x86_64'  
+```
   
 10.Install winlogbeat service(With Administrator privilege)  
+```
 .\install-service-winlogbeat.ps1  
+```
 *** If find problem about "Cannot be loaded because the execution of scripts is disabled on this system.", please run 'set-executionpolicy remotesigned'  
   
 In Winlogbeat.yml in "C:\Program Files\winlogbeat-7.2.0-windows-x86_64\winlogbeat-7.2.0-windows-x86_64"  
