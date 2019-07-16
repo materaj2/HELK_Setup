@@ -94,7 +94,7 @@ winlogbeat.event_logs:
 #----------------------------- Logstash output --------------------------------
 output.logstash:
   # The Logstash hosts ### Specific IP here
-  hosts: ["35.247.163.182:5044"]
+  hosts: ["<Your HELK IP>:5044"]
 
   # Optional SSL. By default is off.
   # List of root certificates for HTTPS server verifications
