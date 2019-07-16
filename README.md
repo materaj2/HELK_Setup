@@ -55,7 +55,10 @@ cd 'C:\Program Files\winlogbeat-7.2.0-windows-x86_64\winlogbeat-7.2.0-windows-x8
 ```
 .\install-service-winlogbeat.ps1  
 ```
-*** If find problem about "Cannot be loaded because the execution of scripts is disabled on this system.", please run 'set-executionpolicy remotesigned'  
+*** If find problem about "Cannot be loaded because the execution of scripts is disabled on this system.", please run 
+```
+'set-executionpolicy remotesigned'  
+```
   
 In Winlogbeat.yml in "C:\Program Files\winlogbeat-7.2.0-windows-x86_64\winlogbeat-7.2.0-windows-x86_64"  
 ##### Normally winlogbeat.event_logs:  
