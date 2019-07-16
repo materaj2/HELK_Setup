@@ -9,6 +9,15 @@ git clone https://github.com/Cyb3rWard0g/HELK.git
 cd HELK/docker
 sudo ./helk_install.sh  
 ```  
+if you change anything and want to reload configuration, I suggest to restart specific service of docker compose such as "helk-logstash", I will use command  
+```
+docker-compose -f helk-kibana-analysis-alert-basic.yml restart helk-logstash
+```
+Or you want to restart all of the stack, please use
+```
+docker-compose restart -f helk-kibana-analysis-alert-basic.yml -t 10
+```
+  
 ### Setup Windows Client  
 1. Download Sysmon from Microsoft  
 - https://docs.microsoft.com/en-us/sysinternals/downloads/sysmon  
