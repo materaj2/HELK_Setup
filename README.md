@@ -93,7 +93,39 @@ output.logstash:
   # Client Certificate Key
   #ssl.key: "/etc/pki/client/cert.key"
 ```  
+## For Linux
+1. Install filebeat  
+```
+curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.2.0-amd64.deb
+sudo dpkg -i filebeat-7.2.0-amd64.deb
+```
   
+2. Configure on Linux is similar to Windows (Winlogbeat)  
+- Comment all output.elasticsearch  
+- Specific in output.logstash to
+```
+output.logstash:
+    hosts: ["HELK IP:5044"]
+```
+if want to log any service, we can do by use module in /etc/filebeat/modules.d/
+
+3. At HELK, go to /opt/HELK/docker/helk-logstash/pipeline/. Create new conf file
+```
+output {
+ if [@metadata][beat] == "filebeat"{
+    elasticsearch {
+      hosts => ["helk-elasticsearch:9200"]
+     index => "%{[@metadata][beat]}-%{+YYYY.MM.dd}"
+      user => 'elastic'
+    }
+  }
+}
+```
+4. Restart docker compose stack
+```
+docker-compose down
+docker-compose up
+```
 ## Source::
 https://cyberwardog.blogspot.com/2017/02/setting-up-pentesting-i-mean-threat_87.html  
 
