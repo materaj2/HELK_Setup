@@ -2,46 +2,47 @@
 HELK and friends
   
 ## Step  
+### Setup HELK Server
 1. Install HELK (https://github.com/Cyb3rWard0g/HELK)(Defaul user: helk and password: hunting)  
 ```
 git clone https://github.com/Cyb3rWard0g/HELK.git  
 cd HELK/docker
 sudo ./helk_install.sh  
 ```  
-
-2. Download Sysmon from Microsoft  
+### Setup Windows Client  
+1. Download Sysmon from Microsoft  
 - https://docs.microsoft.com/en-us/sysinternals/downloads/sysmon  
   
-3. Install Sysmon service(With Administrator privilege)  
+2. Install Sysmon service(With Administrator privilege)  
 ```
 sysmon.exe -i -accepteula -h md5,sha256,imphash -l -n  
 ```
 
-4. Download Sysmon configuration from SwiftOnSecurity  
+3. Download Sysmon configuration from SwiftOnSecurity  
 - https://github.com/SwiftOnSecurity/sysmon-config  
 - https://raw.githubusercontent.com/SwiftOnSecurity/sysmon-config/master/sysmonconfig-export.xml  
 
-5. Check current rules of sysmon  
+4. Check current rules of sysmon  
 ```
 sysmon.exe -c  
 ```
 
-6. Update sysmon configuration
+5. Update sysmon configuration
 ```
 Sysmon.exe -c sysmonconfig-export.xml  
 ```
   
-7. Download winlogbeat for sending log  
+6. Download winlogbeat for sending log  
 https://www.elastic.co/downloads/beats/winlogbeat  
   
-8. Extract winlogbeat zip file and move to C:\Program Files\  
+7. Extract winlogbeat zip file and move to C:\Program Files\  
   
-9. Move to winlogbeat folder  
+8. Move to winlogbeat folder  
 ```
 cd 'C:\Program Files\winlogbeat-7.2.0-windows-x86_64\winlogbeat-7.2.0-windows-x86_64'  
 ```
   
-10.Install winlogbeat service(With Administrator privilege)  
+9. Install winlogbeat service(With Administrator privilege)  
 ```
 .\install-service-winlogbeat.ps1  
 ```
@@ -93,7 +94,8 @@ output.logstash:
   # Client Certificate Key
   #ssl.key: "/etc/pki/client/cert.key"
 ```  
-## For Linux
+  
+### For Linux
 1. Install filebeat  
 ```
 curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.2.0-amd64.deb
@@ -107,7 +109,7 @@ sudo dpkg -i filebeat-7.2.0-amd64.deb
 output.logstash:
     hosts: ["HELK IP:5044"]
 ```
-if want to log any service, we can do by use module in /etc/filebeat/modules.d/
+Normally, filebeat in Linux will monitor just only system log, So if you want to log any service, we can do by use module in /etc/filebeat/modules.d/. Change it from apache.conf.disable to apache.conf after that restart filebeat.
 
 3. At HELK, go to /opt/HELK/docker/helk-logstash/pipeline/. Create new conf file
 ```
