@@ -9,7 +9,7 @@ git clone https://github.com/Cyb3rWard0g/HELK.git
 cd HELK/docker
 sudo ./helk_install.sh  
 ```  
-if you change anything and want to reload configuration, I suggest to restart specific service of docker compose such as "helk-logstash", I will use command  
+If you change anything and want to reload configuration, I suggest to restart specific service of docker compose such as "helk-logstash", I will use command  
 ```
 docker-compose -f helk-kibana-analysis-alert-basic.yml restart helk-logstash
 ```
